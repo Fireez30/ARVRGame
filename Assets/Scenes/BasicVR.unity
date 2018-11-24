@@ -99,7 +99,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 0.1
     agentSlope: 0
     agentClimb: 0.01
     ledgeDropHeight: 0
@@ -1179,7 +1179,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1232,7 +1232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f3577a961bcf942860227cb2e62cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 12.1, y: 0, z: 14.6}
   health: 100
   spawnerRadius: 10
   nbToSpawn: 20
@@ -1241,8 +1240,8 @@ MonoBehaviour:
     type: 2}
   invulnerable: 0
   invulTime: 1
---- !u!64 &1764028575
-MeshCollider:
+--- !u!135 &1764028575
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1250,8 +1249,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
+  serializedVersion: 2
+  m_Radius: 1.6023703
+  m_Center: {x: 0.0000500679, y: 0.57178885, z: -0.16539118}

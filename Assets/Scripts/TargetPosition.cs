@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TargetPosition : MonoBehaviour {
 
-    public Vector3 position; //position of the center
     public int health; //health of the zone the player has to protect
 
     public int spawnerRadius;//distance where ennemies spawn
@@ -22,7 +21,7 @@ public class TargetPosition : MonoBehaviour {
         if (dice < spawnChance && nbToSpawn > 0)
         {
             float angle = Random.Range(0f, 2 * Mathf.PI);//angle sur le cercle
-            Vector3 pos = new Vector3(position.x + spawnerRadius * Mathf.Cos(angle), position.y , position.z + spawnerRadius * Mathf.Sin(angle));//position sur le cercle centré sur la postion, de rayon spawnerRadius
+            Vector3 pos = new Vector3(gameObject.transform.position.x + spawnerRadius * Mathf.Cos(angle), gameObject.transform.position.y, gameObject.transform.position.z + spawnerRadius * Mathf.Sin(angle));//position sur le cercle centré sur la postion, de rayon spawnerRadius
             GameObject e =  Instantiate(ennemiPrefab,pos,Quaternion.identity); // création de l'ennemi
             e.GetComponent<EnnemyBehaviour>().goal = this.gameObject;
             e.GetComponent<EnnemyBehaviour>().ChangeNavDest();
@@ -30,7 +29,7 @@ public class TargetPosition : MonoBehaviour {
         }
 	}
 
-    void OnCollisionStay(Collision contact)//called each tick of ennemy contact
+    void OnCollisionEnter(Collision contact)//called each tick of ennemy contact
     {
         if (!invulnerable)//if we're not in cooldown
         {
@@ -52,6 +51,7 @@ public class TargetPosition : MonoBehaviour {
         {
             health = 0;
             //signal game loss
+            Destroy(this.gameObject);
         }
         else
         {

@@ -15,7 +15,6 @@ public class EnnemyBehaviour : MonoBehaviour {
     void Awake ()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
-        nav.SetDestination(new Vector3(0, 0, 0));
     }
 
     public void ChangeNavDest()

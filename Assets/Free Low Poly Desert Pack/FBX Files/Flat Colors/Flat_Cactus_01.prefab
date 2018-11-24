@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23958788212733282}
   - component: {fileID: 114317580846398720}
   - component: {fileID: 195450214319772106}
-  - component: {fileID: 54041073408663222}
   - component: {fileID: 136553116317698968}
+  - component: {fileID: 54229943411671232}
   m_Layer: 0
   m_Name: Flat_Cactus_01
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1397191745118712}
   m_Mesh: {fileID: 4300000, guid: e7464e6962c79794bbfcdb1d60ea5cd1, type: 3}
---- !u!54 &54041073408663222
+--- !u!54 &54229943411671232
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,6 +148,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 4.3679886
-  m_BaseOffset: 2.1839943
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
