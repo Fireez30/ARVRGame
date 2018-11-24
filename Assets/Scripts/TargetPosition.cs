@@ -29,7 +29,7 @@ public class TargetPosition : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision contact)//called each tick of ennemy contact
+    void OnCollisionStay(Collision contact)//called each tick of ennemy contact
     {
         if (!invulnerable)//if we're not in cooldown
         {
