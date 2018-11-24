@@ -13,14 +13,15 @@ public class EnnemyBehaviour : MonoBehaviour {
 
     void Awake ()
     {
+        goal = null;
         nav = gameObject.GetComponent<NavMeshAgent>();
         GameObject[] end = GameObject.FindGameObjectsWithTag("end");
-        float max = -1f;
+        float min = 100000000000000f;
         foreach (GameObject x in end)
         {
-            if ((x.transform.position - gameObject.transform.position).magnitude < max)
+            if ((x.transform.position - gameObject.transform.position).magnitude < min)
             {
-                max = (x.transform.position - gameObject.transform.position).magnitude;
+                min = (x.transform.position - gameObject.transform.position).magnitude;
                 goal = x;
             }
         }

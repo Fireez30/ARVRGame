@@ -7,17 +7,32 @@ public class Parameters : MonoBehaviour {
     public int goalsLife;
     public int spawnerNumber;
     public int finishedSpawner;
+    public bool end;
 	// Use this for initialization
 	void Awake () {
         finishedSpawner = 0;
+        end = false;
 	}
 	
-    
+    void Update()
+    {
+        if (finishedSpawner == spawnerNumber && !end)
+        {
+            GameObject[] ennemis = GameObject.FindGameObjectsWithTag("enemy");
+            if (ennemis.Length == 0)
+            {
+                Debug.Log("Fin du jeu : success");
+                end = true;
+            }
+
+        }
+    }
+
     public void Damage(int d)
     {
         if (goalsLife <= d)
         {
-            //Fin du jeu
+            Debug.Log("Fin du jeu : échec");
         }
         else
         {
@@ -28,9 +43,5 @@ public class Parameters : MonoBehaviour {
     public void SpawnerFinished()
     {
         finishedSpawner--;
-        if (finishedSpawner == spawnerNumber)
-        {
-            //Fin du jeu
-        }
     }
 }
