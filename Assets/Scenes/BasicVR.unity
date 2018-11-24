@@ -100,8 +100,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 0
+    agentClimb: 0.01
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 16aff652584252c42bb7fb73f37190f9, type: 2}
 --- !u!1 &124159948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1205,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
+      propertyPath: m_Name
+      value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68d5de4c275b2484a87de4f93591635f, type: 3}
   m_IsPrefabAsset: 0
@@ -1229,7 +1237,8 @@ MonoBehaviour:
   spawnerRadius: 10
   nbToSpawn: 20
   spawnChance: 1
-  ennemiPrefab: {fileID: 100000, guid: e7464e6962c79794bbfcdb1d60ea5cd1, type: 3}
+  ennemiPrefab: {fileID: 1397191745118712, guid: bb534c9a89357b8409f30f8eb1b26426,
+    type: 2}
   invulnerable: 0
   invulTime: 1
 --- !u!64 &1764028575

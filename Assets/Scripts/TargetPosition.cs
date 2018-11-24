@@ -23,7 +23,9 @@ public class TargetPosition : MonoBehaviour {
         {
             float angle = Random.Range(0f, 2 * Mathf.PI);//angle sur le cercle
             Vector3 pos = new Vector3(position.x + spawnerRadius * Mathf.Cos(angle), position.y , position.z + spawnerRadius * Mathf.Sin(angle));//position sur le cercle centré sur la postion, de rayon spawnerRadius
-            Instantiate(ennemiPrefab,pos,Quaternion.identity); // création de l'ennemi
+            GameObject e =  Instantiate(ennemiPrefab,pos,Quaternion.identity); // création de l'ennemi
+            e.GetComponent<EnnemyBehaviour>().goal = this.gameObject;
+            e.GetComponent<EnnemyBehaviour>().ChangeNavDest();
             nbToSpawn--;
         }
 	}
