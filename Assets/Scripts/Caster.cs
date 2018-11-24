@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class Caster : MonoBehaviour {
 
@@ -57,21 +58,20 @@ public class Caster : MonoBehaviour {
         }
 	}
 
-    public void ChangeSelect(int d)
+    public void ChangeSelect(object o,VRTK.ControllerInteractionEventArgs e)
     {
-        switch (d)
+        Vector2 v = e.touchpadAxis;
+        if (v.x > 0.3 && v.x < 0.6 && v.y > 0.9)//Case up = bleu
         {
-            case '0':
-                selector = 0;
-                break;
-
-            case '1':
-                selector = 1;
-                break;
-
-            default:
-                selector = 2;
-                break;
+            selector = 0;
+        }
+        if (v.y > 0.3 && v.y < 0.6 && v.x < 0.3)//Case left = tp
+        {
+            selector = 1;
+        }
+        if (v.y > 0.3 && v.y < 0.6 && v.x > 0.9)//Case right = rouge
+        {
+            selector = 2;
         }
     }
 }
