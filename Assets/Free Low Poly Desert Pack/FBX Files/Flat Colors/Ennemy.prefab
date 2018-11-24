@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 136553116317698968}
   - component: {fileID: 54229943411671232}
   m_Layer: 0
-  m_Name: Flat_Cactus_01
+  m_Name: Ennemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

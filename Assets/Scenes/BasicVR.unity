@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   spawnerRadius: 10
-  nbToSpawn: 20
+  nbToSpawn: 5
   spawnChance: 1
   ennemiPrefab: {fileID: 1397191745118712, guid: bb534c9a89357b8409f30f8eb1b26426,
     type: 2}
