@@ -15,6 +15,7 @@ public class EnnemyBehaviour : MonoBehaviour {
     void Awake ()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
+        StartCoroutine(Suicide());
     }
 
     public void ChangeNavDest()
@@ -26,10 +27,9 @@ public class EnnemyBehaviour : MonoBehaviour {
     {
         if (obj.gameObject.tag == "Projectile")
         {
-            if (health < obj.gameObject.GetComponent<ProjectileBehaviour>().damage)
+            if (health <= obj.gameObject.GetComponent<ProjectileBehaviour>().damage)
             {
-                health = 0;
-                Destroy(this.gameObject);
+                Die();
             }
             else
             {
@@ -37,5 +37,16 @@ public class EnnemyBehaviour : MonoBehaviour {
                 //damage animation
             }
         }
+    }
+
+    IEnumerator Suicide()
+    {
+        yield return new WaitForSeconds(60);
+        Die();
+    }
+    public void Die()
+    {
+        goal.GetComponent<TargetPosition>().nbOfEnnemiesAttached--;
+        Destroy(this.gameObject);
     }
 }

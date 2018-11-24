@@ -9,7 +9,7 @@ public class TargetPosition : MonoBehaviour {
     public int spawnerRadius;//distance where ennemies spawn
     public int nbToSpawn;//initial number to spawn for this level
     public int spawnChance; //each tick, check a dice roll to see if spawn is made
-
+    public int nbOfEnnemiesAttached = 0;
     public GameObject ennemiPrefab;//template ennemi
 
     public bool invulnerable;//if has been damaged just before, cant be damaged for invulTime seconds
@@ -26,6 +26,7 @@ public class TargetPosition : MonoBehaviour {
             e.GetComponent<EnnemyBehaviour>().goal = this.gameObject;
             e.GetComponent<EnnemyBehaviour>().ChangeNavDest();
             nbToSpawn--;
+            nbOfEnnemiesAttached++;
         }
 	}
 
@@ -51,7 +52,7 @@ public class TargetPosition : MonoBehaviour {
         {
             health = 0;
             //signal game loss
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
         else
         {
