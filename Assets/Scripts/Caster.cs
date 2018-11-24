@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Caster : MonoBehaviour {
 
-    public GameObject[] prefabs;
+    public GameObject[] prefabs;// 0 = blue, 1 = tp , 2 = red
     public int selector;// 0 = blue, 1 = tp , 2 = red
     bool loading;//is player loading a cast ?
     bool holding;//is player holding a finished cast ?
@@ -30,22 +30,25 @@ public class Caster : MonoBehaviour {
             casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
         }
 
-        if (loading && scalor != 1) //add controler release
-        {
-            Destroy(casting);
-            loading = false;
-        }
+        else if (loading && scalor != 1) //add controler release
+            {
+                Destroy(casting);
+                loading = false;
+                //sound effect
+            }
         
-        if (loading && scalor != 1)
-        {
-            scalor += 0.1f;
-            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
-        }
-        else if (loading && scalor == 1)
-        {
-            loading = false;
-            holding = true;
-        }
+            else if (loading && scalor != 1)
+                {
+                    scalor += 0.1f;
+                    casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
+                }
+
+                else if (loading && scalor == 1)
+                    {
+                        loading = false;
+                        holding = true;
+                        //sound effect
+                    }
 
         if (holding) //add trigger released to throw
         {
