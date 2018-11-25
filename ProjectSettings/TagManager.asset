@@ -9,6 +9,7 @@ TagManager:
   - gamemanager
   - end
   - enemy
+  - sol
   layers:
   - Default
   - TransparentFX

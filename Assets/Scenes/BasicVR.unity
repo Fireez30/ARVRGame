@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 147578192}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: sol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 509268360}
   - component: {fileID: 509268359}
   - component: {fileID: 509268363}
+  - component: {fileID: 509268364}
   m_Layer: 0
   m_Name: RightController
   m_TagString: Untagged
@@ -721,6 +722,22 @@ MonoBehaviour:
   menuPressed: 0
   controllerVisible: 1
 --- !u!114 &509268363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509268357}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 857ffb85973c40d4eb0f51fb06e646ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1018632501761518, guid: 1786a2a8163544f488873bcb4499fbe8, type: 2}
+  - {fileID: 1056373000840762, guid: 1955437847220844c9e97252c07e0d60, type: 2}
+  - {fileID: 1326345121425794, guid: 58e6c7806eeb34049b48650eab629f13, type: 2}
+  selector: 0
+--- !u!114 &509268364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
