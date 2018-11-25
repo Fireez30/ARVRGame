@@ -20,42 +20,46 @@ public class Caster : MonoBehaviour {
         scalor = 0;
     }
 
-	// Update is called once per frame
-	void Update () {
+    public void TriggerReleased()
+    {
+        if (loading && scalor != 1) //add controler release
+        {
+            Debug.Log("Canceled");
+            Destroy(casting);
+            loading = false;
+            //sound effect
+        }
 
+        if (holding) //add trigger released to throw
+        {
+            Debug.Log("Now holding");
+            holding = false;
+        }
+    }
+
+	public void TriggerGestion () {
         if (!loading && !holding) //add controler input detection
         {
+            Debug.Log("Trigger pressed for the first time ! ");
             loading = true;
             casting = Instantiate(prefabs[selector], this.gameObject.transform, true);
             scalor = 0.1f;
             casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
         }
-
-        else if (loading && scalor != 1) //add controler release
-            {
-                Destroy(casting);
-                loading = false;
-                //sound effect
-            }
-        
             else if (loading && scalor != 1)
                 {
+                    Debug.Log("Loading...");
                     scalor += 0.1f;
                     casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
                 }
 
                 else if (loading && scalor == 1)
                     {
+                        Debug.Log("Loaded");
                         loading = false;
                         holding = true;
                         //sound effect
                     }
-
-        if (holding) //add trigger released to throw
-        {
-            //throw
-            //holding = false
-        }
 	}
 
     public void ChangeSelect(object o,VRTK.ControllerInteractionEventArgs e)
