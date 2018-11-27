@@ -43,6 +43,14 @@ public class Caster : MonoBehaviour {
             Debug.Log("Trigger pressed for the first time ! ");
             loading = true;
             casting = Instantiate(prefabs[selector], this.gameObject.transform, true);
+            if (selector == 0)
+            {
+                casting.GetComponent<ProjectileBehaviour>().color = Color.blue;
+            }
+            else if (selector == 2)
+            {
+                casting.GetComponent<ProjectileBehaviour>().color = Color.red;
+            }
             scalor = 0.1f;
             casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
         }

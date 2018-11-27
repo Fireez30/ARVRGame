@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114602162366440736}
   - component: {fileID: 114325035832400088}
   - component: {fileID: 114794732617896714}
+  - component: {fileID: 114253196783772258}
   m_Layer: 0
   m_Name: BlueProjectile
   m_TagString: Untagged
@@ -145,6 +146,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114253196783772258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1018632501761518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4642b6fef5929fb40b6577d693f47156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114325035832400088
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,10 +9,21 @@ public class EnnemyBehaviour : MonoBehaviour {
     public GameObject goal;
     public int speed;//speed of the ennemy
     NavMeshAgent nav;
-
+    public Color color;
 
     void Awake ()
     {
+        int range = Random.Range(0, 100);
+        if (range < 50)
+        {
+            color = Color.red;
+            
+        }
+        else
+        {
+            color = Color.blue;
+        }
+        this.gameObject.GetComponent<MeshRenderer>().material.color = color;
         goal = null;
         nav = gameObject.GetComponent<NavMeshAgent>();
         GameObject[] end = GameObject.FindGameObjectsWithTag("end");
@@ -30,7 +41,7 @@ public class EnnemyBehaviour : MonoBehaviour {
 
     void OnCollisionEnter(Collision obj)
     {
-        if (obj.gameObject.tag == "Projectile")
+        if (obj.gameObject.tag == "Projectile" && obj.gameObject.GetComponent<ProjectileBehaviour>().color == this.color)
         {
             Destroy(this.gameObject);
         }

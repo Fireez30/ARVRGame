@@ -5,13 +5,16 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour {
 
     public int damage;
+    public Color color;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
+
+    void OnCollisionEnter(Collision obj)
+    {
+        Destroy(this.gameObject);
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
