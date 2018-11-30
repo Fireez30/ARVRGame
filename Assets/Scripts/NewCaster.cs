@@ -109,17 +109,20 @@ public class NewCaster : MonoBehaviour {
         {
             Debug.Log("Vector axis :"+v.x);
             t.text = "pearl";
+            t.color = Color.grey;
             selector = 1;
         }
         if (v.y > 0.7)//Case up = bleu
         {
             t.text = "bleu";
+            t.color = Color.blue;
             Debug.Log("Changer vers bleu !");
             selector = 0;
         }
         if (v.x < -0.7)//Case gauche = rouge
         {
             t.text = "rouge";
+            t.color = Color.red;
             Debug.Log("Changer vers rouge !");
             selector = 2;
         }
