@@ -16,7 +16,7 @@ public class PearlBehaviour : MonoBehaviour {
         if (c.gameObject.tag == "sol")
         {
             Debug.Log("AH");//executé
-            Destroy(this.gameObject);//éxecuté
+            Destroy(gameObject);
             playarea.transform.position = c.contacts[0].point;//pas exécuté
         }
 

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114325035832400088}
   - component: {fileID: 114794732617896714}
   - component: {fileID: 114253196783772258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BlueProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 33202151680452766}
   - component: {fileID: 23981587108900056}
   - component: {fileID: 135691924590729752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

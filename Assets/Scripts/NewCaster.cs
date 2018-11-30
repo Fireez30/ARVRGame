@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
+using UnityEngine.UI;
 
 public class NewCaster : MonoBehaviour {
 
+    public Text t;
     public GameObject[] prefabs;// 0 = blue, 1 = tp , 2 = red
     public int selector;// 0 = blue, 1 = tp , 2 = red
     bool loading;//is player loading a cast ?
     bool holding;//is player holding a finished cast ?
     GameObject casting;//object player is casting
-    float scalor;//actual scale of the casting
-
+    public float scalor;//actual scale of the casting
+    public float maxTmer = 0.5f;
+    public float speed;
                  // Use this for initialization
     void Start () {
-
         loading = false;
         holding = false;
         selector = 0;
@@ -25,9 +27,31 @@ public class NewCaster : MonoBehaviour {
             return;
         }
 
-        GetComponent<VRTK_ControllerEvents>().TriggerClicked += new ControllerInteractionEventHandler(DoTriggerClicked);
-        GetComponent<VRTK_ControllerEvents>().TriggerUnclicked += new ControllerInteractionEventHandler(DoTriggerUnclicked);
+        GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(DoTriggerClicked);
+        GetComponent<VRTK_ControllerEvents>().TriggerReleased += new ControllerInteractionEventHandler(DoTriggerUnclicked);
+        GetComponent<VRTK_ControllerEvents>().TouchpadAxisChanged += new ControllerInteractionEventHandler(ChangeSelect2);
+    }
 
+    private void FixedUpdate()
+    {
+        Debug.Log(VRTK_DeviceFinder.GetControllerAngularVelocity(gameObject));
+        Debug.Log(VRTK_DeviceFinder.GetControllerVelocity(gameObject));
+        if (loading && scalor < 1f)
+        {
+            Debug.Log("Loading...");
+            scalor += Time.fixedDeltaTime;
+            scalor = Mathf.Min(1, scalor);
+            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
+        }
+
+        else if (loading && scalor >= 1f)
+        {
+            Debug.Log("Loaded");
+            loading = false;
+            holding = true;
+            //sound effect
+        }
+        
     }
 
     private void DoTriggerClicked(object sender, ControllerInteractionEventArgs e)
@@ -36,7 +60,9 @@ public class NewCaster : MonoBehaviour {
         {
             Debug.Log("Trigger pressed for the first time ! ");
             loading = true;
-            casting = Instantiate(prefabs[selector], this.gameObject.transform, true);
+            casting = Instantiate(prefabs[selector],gameObject.transform);
+            casting.transform.position = gameObject.transform.position;
+            casting.GetComponent<Rigidbody>().useGravity = false;
             if (selector == 0)
             {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.blue;
@@ -45,39 +71,57 @@ public class NewCaster : MonoBehaviour {
             {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.red;
             }
-            scalor = 0.1f;
-            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
-        }
-        else if (loading && scalor != 1)
-        {
-            Debug.Log("Loading...");
-            scalor += 0.1f;
+            scalor = 0f;
             casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
         }
 
-        else if (loading && scalor == 1)
-        {
-            Debug.Log("Loaded");
-            loading = false;
-            holding = true;
-            //sound effect
-        }
     }
 
     private void DoTriggerUnclicked(object sender, ControllerInteractionEventArgs e)
     {
-        if (loading && scalor != 1) //add controler release
+        if (!holding) //add controler release
         {
             Debug.Log("Canceled");
             Destroy(casting);
             loading = false;
+            holding = false;
             //sound effect
         }
 
         if (holding) //add trigger released to throw
         {
             Debug.Log("Now holding");
+            casting.transform.parent = null;
+            casting.GetComponent<Rigidbody>().useGravity = true;
+            casting.GetComponent<Rigidbody>().angularVelocity = VRTK_DeviceFinder.GetControllerAngularVelocity(gameObject);
+            casting.GetComponent<Rigidbody>().velocity = VRTK_DeviceFinder.GetControllerVelocity(gameObject)*speed;
             holding = false;
+            loading = false;
+        }
+    }
+
+    private void ChangeSelect2(object sender, VRTK.ControllerInteractionEventArgs e)
+    {
+        Vector2 v = e.touchpadAxis;
+        v.Normalize();
+        Debug.Log("Vector axis x :" + v.x+ " y : "+v.y);
+        if (v.x > 0.7)//Case droite = pearl
+        {
+            Debug.Log("Vector axis :"+v.x);
+            t.text = "pearl";
+            selector = 1;
+        }
+        if (v.y > 0.7)//Case up = bleu
+        {
+            t.text = "bleu";
+            Debug.Log("Changer vers bleu !");
+            selector = 0;
+        }
+        if (v.x < -0.7)//Case gauche = rouge
+        {
+            t.text = "rouge";
+            Debug.Log("Changer vers rouge !");
+            selector = 2;
         }
     }
 }
