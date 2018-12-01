@@ -10,13 +10,16 @@ public class EnemySpawner : MonoBehaviour {
     public int radius;//where to spawn around 
     public int spawnCooldown; //cooldown of spawn possibility
     public bool stop;
+    GameObject gm;
 
-    void Awake()
+    void Start()
     {
-        stop = false;
+        stop = true;
+        gm = GameObject.FindGameObjectWithTag("gamemanager");
+        nbToSpawn = gm.GetComponent<Parameters>().nbtospawn;
     }
 
-    void Update () {
+    void FixedUpdate () {
         int dice = Random.Range(0, 100);
         if (dice < spawnChance && nbToSpawn > 0 && !stop)
         {
@@ -30,15 +33,21 @@ public class EnemySpawner : MonoBehaviour {
 
             Vector3 pos = new Vector3(gameObject.transform.position.x + xcord, gameObject.transform.position.y, gameObject.transform.position.z + zcord);//position sur le cercle centré sur la postion, de rayon spawnerRadius
             GameObject e = Instantiate(ennemiPrefab, pos, Quaternion.identity); // création de l'ennemi
+            StartCoroutine(Cooldown());
             nbToSpawn--;
-        }
-
-        if (nbToSpawn == 0)
-        {
-
-        }
+            if (nbToSpawn == 0)
+            {
+                gm.GetComponent<Parameters>().SpawnerFinished();
+            }
+        } 
     }
 
+    public void LevelStart()
+    {
+        stop = false;
+    }
+
+    
     IEnumerator Cooldown()
     {
         stop = true;

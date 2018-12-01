@@ -10,6 +10,7 @@ TagManager:
   - end
   - enemy
   - sol
+  - spawner
   layers:
   - Default
   - TransparentFX
