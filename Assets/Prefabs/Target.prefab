@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4104093838156476}
   - component: {fileID: 114192739157692796}
+  - component: {fileID: 65314327713441906}
   m_Layer: 0
   m_Name: Target
   m_TagString: end
@@ -71,15 +72,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1814038153109170}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.35, y: 7.45, z: 8.28}
+  m_LocalRotation: {x: -0, y: 0.91764677, z: -0, w: 0.39739704}
+  m_LocalPosition: {x: 30.08, y: 10.189999, z: 42.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4652604842163168}
   - {fileID: 4232744725163966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 133.169, z: 0}
 --- !u!4 &4232744725163966
 Transform:
   m_ObjectHideFlags: 1
@@ -87,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760055002465798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.532999, y: 0, z: -1.4910002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4104093838156476}
@@ -100,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1852830253991112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.37, z: 2.973}
+  m_LocalPosition: {x: -1.563, y: -0.37, z: 1.482}
   m_LocalScale: {x: 3, y: 0.1, z: 3}
   m_Children: []
   m_Father: {fileID: 4104093838156476}
@@ -218,6 +219,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
+--- !u!65 &65314327713441906
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1814038153109170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114007777434925574
 MonoBehaviour:
   m_ObjectHideFlags: 1
