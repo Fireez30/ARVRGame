@@ -34,8 +34,6 @@ public class NewCaster : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        Debug.Log(VRTK_DeviceFinder.GetControllerAngularVelocity(gameObject));
-        Debug.Log(VRTK_DeviceFinder.GetControllerVelocity(gameObject));
         if (loading && scalor < 1f)
         {
             Debug.Log("Loading...");

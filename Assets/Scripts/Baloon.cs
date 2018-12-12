@@ -1,0 +1,47 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Baloon : MonoBehaviour {
+
+	public bool isRed;
+
+	private Vector3 memPos, memScale;
+	private GameObject childPlatform;
+	private GameObject balloon;
+
+	// Use this for initialization
+	void Awake () {
+		childPlatform = gameObject.transform.GetChild (0).gameObject;
+		childPlatform.SetActive (false);
+		balloon = gameObject.transform.GetChild (1).gameObject;
+		memPos = childPlatform.transform.position;
+		memScale = childPlatform.transform.localScale;
+		if(isRed)
+			balloon.GetComponent<MeshRenderer> ().material.color = Color.red;
+		else
+			balloon.GetComponent<MeshRenderer> ().material.color = Color.blue;
+	}
+
+	void OnCollisionEnter(Collision obj)
+	{
+		Debug.Log ("Collision : " + obj.gameObject);
+		bool red = obj.gameObject.GetComponent<ProjectileBehaviour> ().color == Color.red;
+		if (obj.gameObject.tag == "Projectile" && red==isRed)
+		{
+			StartCoroutine (activatePlatform ());
+		}
+	}
+
+	public IEnumerator activatePlatform(){
+		childPlatform.SetActive (true);
+		Vector3 parentPos = gameObject.transform.position;
+		float t = 0;
+		while (t <= 1) {
+			childPlatform.transform.localScale = Vector3.Lerp (new Vector3 (0, 0, 0), memScale, t);
+			childPlatform.transform.position = Vector3.Lerp (parentPos, memPos, t);
+			t += Time.fixedDeltaTime;
+		}
+		yield break;
+	}
+}
