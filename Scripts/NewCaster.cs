@@ -72,7 +72,7 @@ public class NewCaster : MonoBehaviour {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.red;
             }
             scalor = 0f;
-            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
+            casting.transform.localScale = new Vector3();
         }
 
     }
