@@ -24,7 +24,9 @@ public class SwitchPlatform : MonoBehaviour {
 		AllInstances.Add (this);
 		prism = gameObject.transform.GetChild (0).gameObject;
 		updateColor();
-
+        foreach(GameObject go in bleu){
+            go.SetActive(false);
+        }
 		timer = 0;
 	}
 	// Update is called once per frame

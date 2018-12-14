@@ -34,15 +34,15 @@ public class NewCaster : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (loading && scalor < 1f)
+        if (loading && scalor < 0.2f)
         {
             Debug.Log("Loading...");
-            scalor += Time.fixedDeltaTime;
+            scalor += Time.fixedDeltaTime * 3/4;
             scalor = Mathf.Min(1, scalor);
-            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
+            casting.transform.localScale = new Vector3(scalor, scalor, scalor);
         }
 
-        else if (loading && scalor >= 1f)
+        else if (loading && scalor >= 0.2f)
         {
             Debug.Log("Loaded");
             loading = false;
@@ -61,6 +61,7 @@ public class NewCaster : MonoBehaviour {
             casting = Instantiate(prefabs[selector],gameObject.transform);
             casting.transform.position = gameObject.transform.position;
             casting.GetComponent<Rigidbody>().useGravity = false;
+            casting.GetComponent<BoxCollider>().enabled = false;
             if (selector == 0)
             {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.blue;
@@ -70,7 +71,7 @@ public class NewCaster : MonoBehaviour {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.red;
             }
             scalor = 0f;
-            casting.transform.localScale.Scale(new Vector3(scalor, scalor, scalor));
+            casting.transform.localScale = new Vector3();
         }
 
     }
@@ -88,6 +89,7 @@ public class NewCaster : MonoBehaviour {
 
         if (holding) //add trigger released to throw
         {
+            casting.GetComponent<BoxCollider>().enabled = true;
             Debug.Log("Now holding");
             casting.transform.parent = null;
             casting.GetComponent<Rigidbody>().useGravity = true;

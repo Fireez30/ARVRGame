@@ -18,19 +18,23 @@ public class Baloon : MonoBehaviour {
 		memPos = childPlatform.transform.position;
 		memScale = childPlatform.transform.localScale;
 		if(isRed)
-			balloon.GetComponent<MeshRenderer> ().material.color = Color.red;
+			balloon.GetComponent<MeshRenderer>().material.color = Color.red;
 		else
-			balloon.GetComponent<MeshRenderer> ().material.color = Color.blue;
+			balloon.GetComponent<MeshRenderer>().material.color = Color.blue;
 	}
 
 	void OnCollisionEnter(Collision obj)
 	{
 		Debug.Log ("Collision : " + obj.gameObject);
-		bool red = obj.gameObject.GetComponent<ProjectileBehaviour> ().color == Color.red;
+		bool red = obj.gameObject.GetComponent<ProjectileBehaviour>().color == Color.red;
 		if (obj.gameObject.tag == "Projectile" && red==isRed)
 		{
 			StartCoroutine (activatePlatform ());
-		}
+            Destroy(obj.gameObject);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            balloon.SetActive(false);
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        }
 	}
 
 	public IEnumerator activatePlatform(){
