@@ -15,6 +15,7 @@ public class NewCaster : MonoBehaviour {
     public float scalor;//actual scale of the casting
     public float maxTmer = 0.5f;
     public float speed;
+    public Parameters p;
                  // Use this for initialization
     void Start () {
         loading = false;
@@ -30,6 +31,7 @@ public class NewCaster : MonoBehaviour {
         GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(DoTriggerClicked);
         GetComponent<VRTK_ControllerEvents>().TriggerReleased += new ControllerInteractionEventHandler(DoTriggerUnclicked);
         GetComponent<VRTK_ControllerEvents>().TouchpadAxisChanged += new ControllerInteractionEventHandler(ChangeSelect2);
+        p = GameObject.FindGameObjectWithTag("gamemanager").GetComponent<Parameters>();
     }
 
     private void FixedUpdate()
@@ -62,7 +64,7 @@ public class NewCaster : MonoBehaviour {
             casting.transform.position = gameObject.transform.position;
             casting.GetComponent<Rigidbody>().useGravity = false;
             casting.GetComponent<BoxCollider>().enabled = false;
-            if (selector == 0)
+            if (selector == 1)
             {
                 casting.GetComponent<ProjectileBehaviour>().color = Color.blue;
             }
@@ -89,6 +91,9 @@ public class NewCaster : MonoBehaviour {
 
         if (holding) //add trigger released to throw
         {
+            if (p.counttime) {
+                p.nbOrbsLaunched++;
+            }
             casting.GetComponent<BoxCollider>().enabled = true;
             Debug.Log("Now holding");
             casting.transform.parent = null;
@@ -97,6 +102,7 @@ public class NewCaster : MonoBehaviour {
             casting.GetComponent<Rigidbody>().velocity = VRTK_DeviceFinder.GetControllerVelocity(gameObject)*speed;
             holding = false;
             loading = false;
+            casting = null;
         }
     }
 
@@ -104,20 +110,19 @@ public class NewCaster : MonoBehaviour {
     {
         Vector2 v = e.touchpadAxis;
         v.Normalize();
-        Debug.Log("Vector axis x :" + v.x+ " y : "+v.y);
         if (v.x > 0.7)//Case droite = pearl
         {
             Debug.Log("Vector axis :"+v.x);
             t.text = "pearl";
             t.color = Color.grey;
-            selector = 1;
+            selector = 0;
         }
         if (v.y > 0.7)//Case up = bleu
         {
             t.text = "bleu";
             t.color = Color.blue;
             Debug.Log("Changer vers bleu !");
-            selector = 0;
+            selector = 1;
         }
         if (v.x < -0.7)//Case gauche = rouge
         {
@@ -125,6 +130,15 @@ public class NewCaster : MonoBehaviour {
             t.color = Color.red;
             Debug.Log("Changer vers rouge !");
             selector = 2;
+        }
+        if (v.y < -0.7)
+        {
+            if (casting != null)
+            {
+                Destroy(casting);
+                loading = false;
+                holding = false;
+            }
         }
     }
 }

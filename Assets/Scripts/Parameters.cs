@@ -13,11 +13,19 @@ public class Parameters : MonoBehaviour {
     public Text text;
     public bool end;
     public Button start;
-	// Use this for initialization
-	void Awake () {
+    public float seconds;
+    public int nbOrbsLaunched;
+    public Text time;
+    public Text boules;
+    public bool counttime;
+    // Use this for initialization
+    void Awake () {
         finishedSpawner = 0;
         maxLife = goalsLife;
         end = false;
+        seconds = 0;
+        counttime = true;
+        nbOrbsLaunched = 0;
 	}
 	
     void FixedUpdate()
@@ -33,6 +41,17 @@ public class Parameters : MonoBehaviour {
             }
 
         }
+
+        if (counttime)
+        {
+            seconds += Time.fixedDeltaTime;
+            if (seconds % 60 >= 10)
+                time.text = (int)(seconds / 60) + ":" + (int)(seconds % 60);
+            else
+                time.text = (int)(seconds / 60) + ":0" + (int)(seconds % 60);
+            boules.text = "" + nbOrbsLaunched;
+        }
+
     }
 
     public void SetupRestart()
@@ -45,6 +64,7 @@ public class Parameters : MonoBehaviour {
         start.enabled = false;
         text.text = "";
     }
+
 
     public void StartGame()
     {

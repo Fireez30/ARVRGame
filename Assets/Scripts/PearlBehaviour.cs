@@ -6,14 +6,14 @@ using VRTK;
 public class PearlBehaviour : MonoBehaviour {
     public Transform playarea;
 
-    public float x = 10;
-    public float y = 10;
-    public float z = 10;
-    public float maxYDistance = 20f;
-
+    public float x;
+    public float y;
+    public float z;
+    public float maxYDistance;
     void Start()
     {
         playarea = VRTK_DeviceFinder.PlayAreaTransform();
+        StartCoroutine(Suicide());
     }
 
     private void FixedUpdate()
@@ -32,14 +32,25 @@ public class PearlBehaviour : MonoBehaviour {
 
         this.gameObject.GetComponent<Rigidbody>().velocity = veloc;
     }
+    
+    public IEnumerator Suicide()
+    {
+        yield return new WaitForSeconds(60);
+        Destroy(gameObject);
+    }
 
     void OnCollisionEnter(Collision c)
     {
         if (c.gameObject.tag == "sol" && Mathf.Abs(playarea.transform.position.y - gameObject.transform.position.y) < maxYDistance)
         {
-            Debug.Log("AH");//executé
             Destroy(gameObject);
-            playarea.transform.position = c.contacts[0].point;//pas exécuté
+            Vector3 pos = new Vector3();
+            foreach(ContactPoint col in c.contacts)
+            {
+                pos += col.point;
+            }
+            pos /= c.contacts.Length;
+            playarea.transform.position = pos;//pas exécuté
         }
 
     }

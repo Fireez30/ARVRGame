@@ -9,8 +9,8 @@ public class Baloon : MonoBehaviour {
 	private Vector3 memPos, memScale;
 	private GameObject childPlatform;
 	private GameObject balloon;
-
 	// Use this for initialization
+
 	void Awake () {
 		childPlatform = gameObject.transform.GetChild (0).gameObject;
 		childPlatform.SetActive (false);
@@ -41,10 +41,12 @@ public class Baloon : MonoBehaviour {
 		childPlatform.SetActive (true);
 		Vector3 parentPos = gameObject.transform.position;
 		float t = 0;
-		while (t <= 1) {
-			childPlatform.transform.localScale = Vector3.Lerp (new Vector3 (0, 0, 0), memScale, t);
-			childPlatform.transform.position = Vector3.Lerp (parentPos, memPos, t);
-			t += Time.fixedDeltaTime;
+		while (t <= 0.5) {
+			childPlatform.transform.localScale = Vector3.Lerp (new Vector3 (0, 0, 0), memScale, t*2);
+			childPlatform.transform.position = Vector3.Lerp (parentPos, memPos, t*2);
+           // Debug.Log("While ! pos x : " + childPlatform.transform.position.x+" y : "+ childPlatform.transform.position.y + " z : " + childPlatform.transform.position.z);
+            t += Time.fixedDeltaTime;
+            yield return new WaitForSeconds(Time.fixedDeltaTime); 
 		}
 		yield break;
 	}
