@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/VRTK/Examples/019_Controller_InteractingWithPointer.unity
-    guid: d1be9c4b44ac84e4bb09cbf118f21d02
+    path: Assets/Scenes/Niveau1Tour.unity
+    guid: dfefcbe009ba09d4ba53d294ecbe8c36
   m_configObjects: {}
